@@ -8,6 +8,9 @@
 * [`Mason`](https://github.com/williamboman/mason.nvim) LSP servers, debuggers and linters manager
 * `Treesitter`, etc.
 
+![nvim](https://i.imgur.com/PAQlKGPh.jpg)
+![nvim](https://i.imgur.com/5YuTYUZh.jpg)
+
 ### Fish
 
 * [`fish`](https://fishshell.com/ "fish shell")
