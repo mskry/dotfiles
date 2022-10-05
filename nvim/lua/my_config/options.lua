@@ -29,3 +29,17 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- Treesitter folding 
 -- vim.wo.foldmethod = 'expr'
 -- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not select, force user to select one from the menu
+vim.cmd([[
+set completeopt=menuone,noinsert,noselect
+]])
+
+-- Avoid showing extra messages when using completion
+vim.cmd([[
+set shortmess+=c
+]])
