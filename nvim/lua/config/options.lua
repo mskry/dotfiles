@@ -13,8 +13,12 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+-- code folding
+
 -- vim.wo.foldmethod = 'expr'
 -- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
 vim.cmd('colorscheme nightfox')
 
 -- Fixed column for diagnostics to appear
