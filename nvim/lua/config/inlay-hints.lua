@@ -1,3 +1,4 @@
+local icons = require "config.icons"
 local status_ok, inlay_hints = pcall(require, "inlay-hints")
 if not status_ok then
   return
@@ -11,7 +12,7 @@ inlay_hints.setup {
     type = {
       separator = ", ",
       format = function(hints)
-        return string.format(" ➤ (%s)", hints)
+        return string.format(" %s (%s)", icons.ui.ChevronRight, hints)
       end,
     },
   },

@@ -8,7 +8,7 @@ require('config.options')
 
 require('config.cmp')
 require('config.colorizer')
-require('config.dap-ui')
+require('config.dap')
 require('config.feline')
 require('config.inlay-hints')
 require('config.rust-tools')

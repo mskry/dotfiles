@@ -271,7 +271,7 @@ end
 local function file_info()
   local list = {}
   if vim.bo.readonly then
-    table.insert(list, "🔒")
+    table.insert(list, "")
   end
 
   if vim.bo.modified then
