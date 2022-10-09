@@ -28,8 +28,8 @@ highlight Beacon guibg=#ab435d
 ]])
 
 -- Treesitter folding 
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.wo.foldmethod = 'expr'
+-- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Fixed column for diagnostics to appear
 -- Show autodiagnostic popup on cursor hover_range
@@ -37,7 +37,6 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 -- Show inlay_hints more frequently 
 vim.cmd([[
 set signcolumn=yes
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
 -- Avoid showing extra messages when using completion
@@ -47,3 +46,9 @@ set shortmess+=c
 
 -- set theme
 vim.cmd('colorscheme nightfox')
+
+vim.cmd([[
+hi LineNr ctermfg=7 guifg=#dbc074
+hi LineNrAbove ctermfg=7 guifg=#71839b
+hi LineNrBelow ctermfg=7 guifg=#71839b
+]])

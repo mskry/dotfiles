@@ -1,3 +1,5 @@
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
   return
@@ -17,6 +19,11 @@ end
 
 --   פּ ﯟ   some other good icons
 local icons = require "config.icons"
+
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 cmp.setup {
   snippet = {
@@ -78,15 +85,21 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+        nvim_lsp_signature_help = "[Signature]",
+        vsnip = "[Vsnip]",
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
-    { name = "nvim_lsp" },
+    { name = 'path' },                              -- file paths
+    { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
+    { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
+    { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
+    { name = 'buffer', keyword_length = 2 },        -- source current buffer
+    { name = 'vsnip', keyword_length = 2 },
     { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
+    { name = 'orgmode' }
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
