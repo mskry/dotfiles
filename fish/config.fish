@@ -1,5 +1,5 @@
 set PATH $HOME/.cargo/bin $PATH
-set PATH /usr/local/Cellar/llvm/15.0.1/bin $PATH
+set PATH /usr/local/Cellar/llvm/15.0.2/bin $PATH
 
 # Define alias in shell
 alias vim "nvim"
