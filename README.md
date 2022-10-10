@@ -1,6 +1,8 @@
 # dotfiles
 
 ### Neovim
+ 
+ ![nvim](https://i.imgur.com/ih55ogT.png)
 
 * [`nvim`](https://neovim.io/ "Neovim") (Neovim 0.8) Lua config
 * [`rust-analyzer`](https://rust-analyzer.github.io/manual.html "rust-analyzer") with Neovim's LSP configured with collection of Rust lints - *[clippy](https://doc.rust-lang.org/clippy/index.html "Cargo clippy")*.
@@ -8,8 +10,7 @@
 * [`Mason`](https://github.com/williamboman/mason.nvim) LSP servers, debuggers and linters manager
 * `Treesitter`, etc.
 
-![nvim](https://i.imgur.com/PAQlKGPh.jpg)
-![nvim](https://i.imgur.com/5YuTYUZh.jpg)
+
 
 ### Fish
 
