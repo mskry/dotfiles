@@ -15,3 +15,4 @@ require('config.tabby')
 require('config.telescope')
 require('config.tree')
 require('config.treesitter')
+
