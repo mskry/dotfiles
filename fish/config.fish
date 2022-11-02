@@ -55,3 +55,8 @@ if status is-interactive
     eval (zellij setup --generate-auto-start fish | string collect)
     eval (starship init fish | source)
 end
+
+# pnpm
+set -gx PNPM_HOME "/Users/mac/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end

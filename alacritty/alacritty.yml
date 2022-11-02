@@ -30,9 +30,9 @@ window:
   # must be non-zero for this to take effect. The number of columns must be at
   # least `2`, while using a value of `0` for columns and lines will fall back
   # to the window manager's recommended size
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+   columns: 130
+   lines: 42
 
   # Window position (changes require restart)
   #
@@ -78,7 +78,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: SimpleFullscreen
+  startup_mode: Windowed 
 
   # Window title
   #title: Alacritty
@@ -116,10 +116,10 @@ font:
     #
     # Default:
     #   - FiraCode Nerd Font
-    family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    # style: Retina
+    style: Regular
 
   # Bold font face
   bold:
@@ -127,7 +127,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FiraCode Nerd Font Mono
+    family: JetBrains Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -138,21 +138,21 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FiraCode Nerd Font Mono
+    family: JetBrains Mono 
 
     # The `style` can be specified to pick a specific face.
     style: Italic
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: JetBrains Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+    style: Bold Italic
 
   # Point size
   size: 16.0

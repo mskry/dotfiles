@@ -579,7 +579,7 @@ plugins:
 # Options:
 #   - true
 #   - false (Default)
-simplified_ui: true
+# simplified_ui: true
 
 # Choose the path to the default shell that zellij will use for opening new panes
 # Default: $SHELL
@@ -589,7 +589,7 @@ simplified_ui: true
 # Options:
 #   - true (default)
 #   - false
-pane_frames: false
+# pane_frames: false
 
 # Choose the theme that is specified in the themes section.
 # For some examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
@@ -636,4 +636,4 @@ pane_frames: false
 #copy_on_select: true
 
 # Path to the default editor to use to edit pane scrollbuffer
-# scrollback_editor: /usr/bin/nano
+scrollback_editor: /usr/local/bin/nvim

@@ -3,3 +3,6 @@ github-copilot/
 jgit/
 omf/
 iterm2/
+.luarc.json
+yarn
+configstore/
