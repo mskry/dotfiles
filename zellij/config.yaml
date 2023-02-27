@@ -573,7 +573,7 @@ plugins:
 # Options:
 #   - detach (Default)
 #   - quit
-#on_force_close: quit
+on_force_close: quit
 
 # Send a request for a simplified ui (without arrow fonts) to plugins
 # Options:

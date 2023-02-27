@@ -206,6 +206,31 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Remap R_Shift+ESC to Tilde",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "mandatory": "right_shift",
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },

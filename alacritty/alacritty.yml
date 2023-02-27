@@ -1,5 +1,5 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
 
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
 # Import additional configuration files
 #
 # Imports are loaded in order, skipping all missing files, with the importing
@@ -13,15 +13,15 @@
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
+env:
 # set by alacritty itself.
-#env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -30,10 +30,19 @@ window:
   # must be non-zero for this to take effect. The number of columns must be at
   # least `2`, while using a value of `0` for columns and lines will fall back
   # to the window manager's recommended size
-  dimensions:
-   columns: 130
-   lines: 42
 
+   # LG wide screen
+  # dimensions:
+  #  columns: 296
+  #  lines: 65
+  # Macbook Pro 15
+  dimensions:
+   columns: 120
+   lines: 48
+
+  position:
+    x: 20
+    y: 15
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -47,7 +56,7 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   # padding:
-  #  x: 0 
+  #  x: 0
   #  y: 0
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -78,7 +87,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed 
+  startup_mode: Windowed
 
   # Window title
   #title: Alacritty
@@ -114,12 +123,12 @@ font:
   normal:
     # Font family
     #
-    # Default:
-    #   - FiraCode Nerd Font
-    family: JetBrainsMono Nerd Font Mono
+    Default:
+    family: FiraCode Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    # style: Light 
+    style: Retina
 
   # Bold font face
   bold:
@@ -127,10 +136,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: JetBrains Mono
+    family: FiraCode Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Medium
 
   # Italic font face
   italic:
@@ -138,10 +147,10 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: JetBrains Mono 
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    style: ExtraLight Italic
 
   # Bold italic font face
   bold_italic:
@@ -149,20 +158,21 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Bold Italic
+    style: Italic
 
   # Point size
-  size: 16.0
+  size: 16
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
-  #offset:
+  offset:
   #  x: 0
-  #  y: 0
+  #  y: 4 matches VSCode line height
+    y: 4
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
@@ -181,36 +191,38 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Tomorrow Night)
+# TokyoNight Alacritty Colors
 colors:
   # Default colors
   primary:
-    background: '0x192330'
-    foreground: '0xcdcecf'
+    background: '0x24283b'
+    foreground: '0xc0caf5'
+
   # Normal colors
   normal:
-    black:   '0x393b44'
-    red:     '0xc94f6d'
-    green:   '0x81b29a'
-    yellow:  '0xdbc074'
-    blue:    '0x719cd6'
-    magenta: '0x9d79d6'
-    cyan:    '0x63cdcf'
-    white:   '0xdfdfe0'
+    black:   '0x1d202f'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xa9b1d6'
+
   # Bright colors
   bright:
-    black:   '0x575860'
-    red:     '0xd16983'
-    green:   '0x8ebaa4'
-    yellow:  '0xe0c989'
-    blue:    '0x86abdc'
-    magenta: '0xbaa1e2'
-    cyan:    '0x7ad4d6'
-    white:   '0xe4e4e5'
-  indexed_colors:
-    - { index: 16, color: '0xf4a261' }
-    - { index: 17, color: '0xd67ad2' }
+    black:   '0x414868'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xc0caf5'
 
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
   # Keyboard hints
   #hints:
     # First character in the hint label
@@ -360,9 +372,9 @@ colors:
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
 
-#cursor:
+cursor:
   # Cursor style
-  #style:
+  style:
     # Cursor shape
     #
     # Values for `shape`:
@@ -378,7 +390,7 @@ colors:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    #blinking: Off
+    blinking: Off 
 
   # Vi mode cursor style
   #
@@ -425,7 +437,7 @@ colors:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: None
+working_directory: "/Users/mac/Projects"
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
