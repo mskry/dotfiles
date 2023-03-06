@@ -1,0 +1,15 @@
+themes {
+    default {
+        fg 205 206 207
+        bg 57 59 68
+        black 57 59 68
+        red 201 79 109
+        green 129 178 154
+        yellow 219 192 116
+        blue 113 156 214
+        magenta 157 121 214
+        cyan 99 205 207
+        white 223 223 224
+        orange 208 135 112
+    }
+}

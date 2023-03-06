@@ -1,0 +1,13 @@
+layout {
+    default_tab_template {
+        children
+    }
+    tab focus=true
+    tab focus=true split_direction="Vertical" {
+        pane focus=true split_direction="Vertical" {
+            pane size="50%"
+            pane size="50%" focus=true
+        }
+    }
+    tab
+}
