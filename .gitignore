@@ -6,3 +6,4 @@ iterm2/
 .luarc.json
 yarn
 configstore/
+nvim_backup/
