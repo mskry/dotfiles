@@ -76,7 +76,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  # opacity: 1.0
+  #opacity: 0.95
 
   # Startup Mode (changes require restart)
   #
@@ -164,7 +164,7 @@ font:
     style: Italic
 
   # Point size
-  size: 16
+  size: 17
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -192,6 +192,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # TokyoNight Alacritty Colors
+
 colors:
   # Default colors
   primary:
@@ -223,7 +224,7 @@ colors:
   indexed_colors:
     - { index: 16, color: '0xff9e64' }
     - { index: 17, color: '0xdb4b4b' }
-  # Keyboard hints
+# Keyboard hints
   #hints:
     # First character in the hint label
     #
