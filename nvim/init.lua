@@ -90,9 +90,12 @@ require('lazy').setup({
         'j-hui/fidget.nvim',
         tag = 'legacy',
         opts = {
-          --  set spinner to dots spinner
-          spinner = 'dots',
-        }
+          text = { spinner = 'dots' },
+          window = {
+            blend = 0,
+            relative = "editor",
+          }
+        },
       },
 
       -- Additional lua configuration, makes nvim stuff amazing!
@@ -143,9 +146,8 @@ require('lazy').setup({
     'saecki/crates.nvim',
     tag = 'v0.3.0',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('crates').setup()
-    end,
+    opts = {}
+
   },
 
   -- Auto pairs
@@ -190,12 +192,16 @@ require('lazy').setup({
 
   {
     'EdenEast/nightfox.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'nightfox'
-    end,
-  },
+    opts = {
+      options = {
+        transparent = true,
+        styles = {
+          comments = "italic",
+        },
 
+      },
+    }
+  },
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -211,12 +217,19 @@ require('lazy').setup({
   },
 
   {
-    -- Add indentation guides even on blank lines
+    -- Add indentation guides even on blank lines:
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
     main = "ibl",
-    opts = {},
+    opts = {
+      scope = {
+        show_start = false,
+      },
+      indent = {
+        char = '▏',
+      }
+    },
   },
 
   -- "gc" to comment visual regions/lines
@@ -379,7 +392,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
+    ensure_installed = { 'lua', 'rust', 'tsx', 'javascript', 'typescript', 'vue', 'pug' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -534,6 +547,7 @@ local servers = {
   },
 }
 
+
 local rt = require('rust-tools')
 
 rt.setup({
@@ -649,3 +663,4 @@ end, { remap = true })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.cmd.colorscheme('nightfox')
