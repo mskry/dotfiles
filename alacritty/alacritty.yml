@@ -76,7 +76,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  #opacity: 0.95
+  opacity: 0.9
 
   # Startup Mode (changes require restart)
   #
@@ -124,11 +124,10 @@ font:
     # Font family
     #
     Default:
-    family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    # style: Light 
-    style: Retina
+    style: Regular
 
   # Bold font face
   bold:
@@ -136,10 +135,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    style: Bold
 
   # Italic font face
   italic:
@@ -161,7 +160,7 @@ font:
     family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    style: Medium Italic
 
   # Point size
   size: 17
@@ -172,7 +171,7 @@ font:
   offset:
   #  x: 0
   #  y: 4 matches VSCode line height
-    y: 4
+    y: 3
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the

@@ -4,7 +4,7 @@ set PATH /usr/local/Cellar/llvm/17.0.1/bin $PATH
 # Define alias in shell
 alias vim "nvim"
 alias vi "nvim"
-alias nv "nvim"
+alias nv "nvim ."
 alias ls "eza --long"
 
 # Set default editor

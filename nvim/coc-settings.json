@@ -1,4 +1,0 @@
-{
-  "inlayHint.enable": true,
-  "rust-analyzer.inlayHints.bindingModeHints.enable": true,
-}
