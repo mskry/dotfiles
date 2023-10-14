@@ -79,21 +79,30 @@ require('lazy').setup({
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    opts = {
+    },
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
-
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       {
         'j-hui/fidget.nvim',
         tag = 'legacy',
         opts = {
-          text = { spinner = 'dots' },
+          align = {
+            bottom = false,
+          },
+          text = {
+            done = '',
+            spinner = 'meter',
+            completed = "Done!",
+          },
           window = {
             blend = 0,
             relative = "editor",
+            bottom = false
           }
         },
       },
@@ -120,28 +129,56 @@ require('lazy').setup({
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      -- Adds vscode-like pictograms for completion items
+      'onsails/lspkind-nvim',
     },
   },
+
+  -- Copilot integration
   {
     'zbirenbaum/copilot.lua',
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        suggestion = {
-          auto_trigger = true,
-          keymap = {
-            accept = "<C-j>",
-            prev = "<C-l>",
-            next = "<C-k>",
-          },
-        },
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        -- suggestion = {
+        --   auto_trigger = true,
+        --   keymap = {
+        --     accept = "<C-j>",
+        --     prev = "<C-l>",
+        --     next = "<C-k>",
+        --   },
+        -- },
       })
     end,
   },
 
+  -- Copilot cmp source
+  {
+    'zbirenbaum/copilot-cmp',
+    config = function()
+      require("copilot_cmp").setup()
+    end
+  },
+
+  -- ChatGPT
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+
   -- Rust related plugins
-  { 'simrat39/rust-tools.nvim' },
   {
     'saecki/crates.nvim',
     tag = 'v0.3.0',
@@ -158,19 +195,15 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',    opts = {} },
+  {
+    'folke/which-key.nvim',
+    opts = {},
+  },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
@@ -190,28 +223,57 @@ require('lazy').setup({
     },
   },
 
+  -- Color theme
   {
-    'EdenEast/nightfox.nvim',
+    'rebelot/kanagawa.nvim',
     opts = {
-      options = {
-        transparent = true,
-        styles = {
-          comments = "italic",
-        },
+      transparent = true,
+      overrides = function(colors)
+        local theme = colors.theme
+        return {
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
+          NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+          LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+          MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+          TelescopeTitle = { fg = theme.ui.special, bold = true },
+          TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+          TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+          TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+          TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+          TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+          TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+          PmenuSbar = { bg = theme.ui.bg_m1 },
+          PmenuThumb = { bg = theme.ui.bg_p2 },
 
+        }
+      end,
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none"
+            }
+          }
+        }
       },
-    }
+    },
+    init = function()
+      vim.cmd [[ colorscheme kanagawa ]]
+    end,
   },
+
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'nightfox',
-        component_separators = '|',
-        section_separators = '',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
       },
     },
   },
@@ -268,12 +330,26 @@ require('lazy').setup({
   {
     'smoka7/hop.nvim',
     tag = 'v2.3.2',
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require 'hop'.setup { keys = 'asdfghjklqweruiopcvnmHJKLUIONMOPWEQD' }
-    end
+    opts = {
+      keys = 'asdfghjklqweruiopcvnmHJKLUIONMOPWEQD',
+    },
+    init = function()
+      local hop = require('hop')
+      local directions = require('hop.hint').HintDirection
+      vim.keymap.set('', 'f', function()
+        hop.hint_char1({ direction = directions.AFTER_CURSOR })
+      end, { remap = true })
+      vim.keymap.set('', 'F', function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR })
+      end, { remap = true })
+      vim.keymap.set('', 't', function()
+        hop.hint_char1({ direction = directions.AFTER_CURSOR, hint_offset = -1 })
+      end, { remap = true })
+      vim.keymap.set('', 'T', function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR, hint_offset = 1 })
+      end, { remap = true })
+    end,
   },
-
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -287,7 +363,7 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
-}, {})
+})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -373,7 +449,7 @@ vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { d
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
+
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
@@ -506,7 +582,7 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- document existing key chains
+-- document existing key chainsmeter
 require('which-key').register({
   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
@@ -515,22 +591,65 @@ require('which-key').register({
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+  z = {
+    name = "ChatGPT",
+    c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+    e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
+    g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
+    t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
+    k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
+    d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
+    a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
+    o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
+    s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
+    f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
+    x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
+    r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
+    l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+  },
 })
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
---  Add any additional override configuration in the following tables. They will be passed to
+--  Add any additional override configuration in the following tablemeters. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
+  tsserver = {
+    javascript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      }
+    },
+    typescript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      }
+    },
+  },
   rust_analyzer = {
     ["rust-analyzer"] = {
+      highlighting = {
+        -- semanticTokens = true,
+      },
+      inlayHints = {
+        closureReturnTypeHints = { enable = true },
+      },
       checkOnSave = {
         command = "clippy",
       },
@@ -541,33 +660,12 @@ local servers = {
 
   lua_ls = {
     Lua = {
+      hint = { enable = true },
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
 }
-
-
-local rt = require('rust-tools')
-
-rt.setup({
-  tools = {
-    inlay_hints = {
-      auto = true,
-      only_current_line = true,
-    },
-  },
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set('n', '<C-space>', rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set('n', '<Leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-})
-
-rt.inlay_hints.enable()
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -598,10 +696,28 @@ mason_lspconfig.setup_handlers {
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 cmp.setup {
+  window = {
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      col_offset = -3,
+      side_padding = 0,
+    },
+  },
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50, symbol_map = { Copilot = "" } })(
+        entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. (strings[1] or "") .. " "
+      return kind
+    end,
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -637,30 +753,28 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    -- Copilot Source
+    { name = 'copilot' },
+    -- LSP Sources
     { name = "path" },
     { name = 'buffer' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = "crates" },
+    { name = 'crates' },
   },
 }
 
--- [[ Configure Hop ]]
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR })
-end, { remap = true })
-vim.keymap.set('', 'F', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR })
-end, { remap = true })
-vim.keymap.set('', 't', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, hint_offset = -1 })
-end, { remap = true })
-vim.keymap.set('', 'T', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, hint_offset = 1 })
-end, { remap = true })
+
+if vim.lsp.inlay_hint then
+  vim.keymap.set(
+    'n', '<leader>ih',
+    function() vim.lsp.inlay_hint(0, nil) end,
+    { desc = 'Toggle inlay hints' }
+  )
+end
+
+-- Completion types colors
+vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { bg = '#113c80', fg = 'NONE' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.cmd.colorscheme('nightfox')
