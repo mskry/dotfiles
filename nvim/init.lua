@@ -248,7 +248,8 @@ require('lazy').setup({
           PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
           PmenuSbar = { bg = theme.ui.bg_m1 },
           PmenuThumb = { bg = theme.ui.bg_p2 },
-
+          -- match with Kanagawa's shell red
+          Error = { fg = "#c34043" },
         }
       end,
       colors = {
@@ -269,7 +270,12 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    opts = {}
+    opts = {
+      options = {
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' }
+      },
+    }
   },
 
   {
@@ -640,13 +646,32 @@ local servers = {
   },
   rust_analyzer = {
     ["rust-analyzer"] = {
-      highlighting = {
-        -- semanticTokens = true,
+      lens = {
+        enable = true,
+        debug = {
+          enable = false
+        },
+        run = {
+          enable = false
+        },
+        references = {
+          adt = {
+            enable = true
+          },
+          enumVariant = {
+            enable = true
+          },
+          method = {
+            enable = true
+          }
+        }
       },
+      -- see toggle inlay hints
       inlayHints = {
         closureReturnTypeHints = { enable = true },
       },
-      checkOnSave = {
+      -- run cargo clippy instead of cargo check
+      check = {
         command = "clippy",
       },
     },
