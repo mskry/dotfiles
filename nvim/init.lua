@@ -42,6 +42,7 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.statuscolumn = '%= %l %s%C'
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -417,6 +418,21 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Center search results
+vim.keymap.set("n", "n", "nzz", { silent = true, noremap = true })
+vim.keymap.set("n", "N", "Nzz", { silent = true, noremap = true })
+
+-- Switch buffer
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true, noremap = true })
+
+-- Move selected line / block of text in visual mode
+vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", { silent = true, noremap = true })
+vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", { silent = true, noremap = true })
+
+-- Paste over currently selected text without yanking it
+vim.keymap.set("v", "p", '"_dP', { silent = true, noremap = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
