@@ -86,9 +86,9 @@ docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gatew
 
     CodeGemma is a collection of powerful, lightweight models that can perform a variety of coding tasks like fill-in-the-middle code completion, code generation, natural language understanding, mathematical reasoning, and instruction following.
 
-   - `instruct` a 7b instruction-tuned variant for natural language-to-code chat and instruction following  
-   - `code` a 7b pretrained variant that specializes in code completion and generation from code prefixes and/or suffixes  
-   - `2b` a state of the art 2B pretrained variant that provides up to 2x faster code completion
+      - `instruct` a 7b instruction-tuned variant for natural language-to-code chat and instruction following  
+      - `code` a 7b pretrained variant that specializes in code completion and generation from code prefixes and/or suffixes  
+      - `2b` a state of the art 2B pretrained variant that provides up to 2x faster code completion
 
 ```bash
 docker exec -it ollama ollama run codegemma:instruct
@@ -97,7 +97,7 @@ docker exec -it ollama ollama run codegemma:instruct
 5. Move Docker root directory (optional):
    You might want to move Docker root to a different volume to save the system disk space
 
-   - In this example I moved Docker root directory to the `/home`, in my case it is mounted to a separate volume:
+   In this example I moved Docker root directory to the `/home`, in my case it is mounted to a separate volume:
 
 ```bash
 # Stop Docker services
@@ -145,8 +145,9 @@ docker run -d --gpus=all -p 8000:8000 --add-host=host.docker.internal:host-gatew
 ```
 
 - Open the Open WebUI settings and navigate to the TTS Settings under **Admin Panel > Settings > Audio**.
-- Text-to-Speech Engine: OpenAI
-- API Base URL: `http://host.docker.internal:8000/v1`
-- API Key: `anykey` (note: this is a dummy API key, as `openedai-speech` doesn't require an API key;  you can use whatever for this field)
+
+   Text-to-Speech Engine: OpenAI
+   API Base URL: `http://host.docker.internal:8000/v1`
+   API Key: `anykey` (note: this is a dummy API key, as `openedai-speech` doesn't require an API key;  you can use whatever for this field)
 
 ![open web ui tts settings](https://github.com/mskry/dotfiles/blob/master/img.png?raw=true)
