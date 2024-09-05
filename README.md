@@ -117,4 +117,4 @@ docker run -d --gpus=all -p 8000:8000 --add-host=host.docker.internal:host-gatew
     - API Key: `anykey` (note: this is a dummy API key, as `openedai-speech` doesn't require an API key;  you can use whatever for this field)
 
 
-![[img.png]]
+![[https://github.com/mskry/dotfiles/blob/master/img.png]]
