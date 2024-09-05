@@ -8,7 +8,7 @@
 pacman -S gcc make man-db unzip fish alacritty neovim starship xclip stow git git-delta base-devel ripgrep fd fzf bottom bat eza procs dust sd nitrogen docker 
 ```
 
-1. Install yay the _Arch User Repository_ helper:
+2. Install yay the _Arch User Repository_ helper:
 
 ```bash
 git clone https://aur.archlinux.org/yay.git
@@ -16,7 +16,7 @@ cd yay
 makepkg -si
 ```
 
-1. Install the necessary fonts for the system and terminal, including regular, nerd, and emoji fonts:
+3. Install the necessary fonts for the system and terminal, including regular, nerd, and emoji fonts:
 
 ```bash
 yay -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji
@@ -24,7 +24,7 @@ yay -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji
 fc-cache -vf
 ```
 
-1. Manage Node.js with Volta. Very fast and seamless per-project version switching:
+4. Manage Node.js with Volta. Very fast and seamless per-project version switching:
 
 ```bash
 curl https://get.volta.sh | bash
@@ -39,7 +39,7 @@ volta install node pnpm
 sudo usermod -aG docker $USER
 ```
 
-1. Install NVIDIA Container Toolkit (if applicable):
+2. Install NVIDIA Container Toolkit (if applicable):
 
 ```bash
 yay -S nvidia-container-toolkit
@@ -47,7 +47,7 @@ sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 ```
 
-1. Run Ollama inside a Docker container with Open WebUI
+3. Run Ollama inside a Docker container with Open WebUI
 
 - Run Ollama container
 
@@ -82,7 +82,7 @@ docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gatew
 
    `http://localhost:3000/`
 
-1. Run a model (codegemma ❤️)
+4. Run a model (codegemma ❤️)
 
     CodeGemma is a collection of powerful, lightweight models that can perform a variety of coding tasks like fill-in-the-middle code completion, code generation, natural language understanding, mathematical reasoning, and instruction following.
 
@@ -94,7 +94,7 @@ docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gatew
 docker exec -it ollama ollama run codegemma:instruct
 ```
 
-1. Move Docker root directory (optional):
+5. Move Docker root directory (optional):
    You might want to move Docker root to a different volume to save the system disk space
 
    - In this example I moved Docker root directory to the `/home`, in my case it is mounted to a separate volume:
@@ -137,7 +137,7 @@ docker info -f '{{ .DockerRootDir}}'
 sudo systemctl restart docker docker.socket containerd
 ```
 
-1. Integrating `openedai-speech` TTS into Open WebUI
+6. Integrating `openedai-speech` TTS into Open WebUI
 
 ```bash
 # expose it throught host.docker.internal:8000 so Open WebUI can access it
