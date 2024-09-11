@@ -151,4 +151,4 @@ docker run -d --gpus=all -p 8000:8000 --add-host=host.docker.internal:host-gatew
    API Base URL: `http://host.docker.internal:8000/v1`
    API Key: `anykey` (note: this is a dummy API key, as `openedai-speech` doesn't require an API key;  you can use whatever for this field)
 
-![open web ui tts settings](https://github.com/mskry/dotfiles/blob/master/img.png?raw=true)
+![open web ui tts settings](https://i.imgur.com/nv0FYAj.png)
