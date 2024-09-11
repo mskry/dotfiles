@@ -161,4 +161,3 @@ complete -c bun \
 	-n "__fish_seen_subcommand_from pm; and __fish_seen_subcommand_from cache; and not __fish_seen_subcommand_from (__fish__get_bun_bins) (__fish__get_bun_scripts);" -a 'rm' -f
 
 complete -c bun -n "not __fish_seen_subcommand_from $bun_builtin_cmds (__fish__get_bun_bins) (__fish__get_bun_scripts)" -a "$bun_builtin_cmds" -f
-

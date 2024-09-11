@@ -1,0 +1,12 @@
+layout {
+    pane split_direction="vertical" {
+        pane {
+            size "33%"
+        }
+        pane  {
+            focus true
+            command "nvim"
+            args "."
+        }
+    }
+}

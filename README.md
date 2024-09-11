@@ -24,11 +24,12 @@ yay -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji
 fc-cache -vf
 ```
 
-4. Manage Node.js with Volta. Very fast and seamless per-project version switching:
+4. Powerful task runner, version and env management tool for NodeJS, Python, Rust and more.
 
 ```bash
-curl https://get.volta.sh | bash
-volta install node pnpm
+curl https://mise.run | sh
+
+mise use -g node
 ```
 
 ## Setting up Docker and Ollama
@@ -97,7 +98,7 @@ docker exec -it ollama ollama run codegemma:instruct
 5. Move Docker root directory (optional):
    You might want to move Docker root to a different volume to save the system disk space
 
-   In this example I moved Docker root directory to the `/home`, in my case it is mounted to a separate volume:
+   I moved Docker root directory to the `/home`, in my case it is mounted to a separate volume:
 
 ```bash
 # Stop Docker services

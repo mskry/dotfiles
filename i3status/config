@@ -1,0 +1,24 @@
+general {
+        colors = true
+        interval = 5
+}
+
+order += "disk /"
+order += "memory"
+order += "tztime vienna"
+
+
+tztime vienna {
+        format = "%d/%m %H:%M"
+        timezone = "Europe/Vienna"
+}
+
+memory {
+        format = "%used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+
+disk "/" {
+        format = "%free"
+}
