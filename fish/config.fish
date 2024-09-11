@@ -20,7 +20,14 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-# tabtab source for packages
-# uninstall by removing these lines
-[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+# set default editor for the fzf to open files
+set -gx EDITOR "nvim"
+set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
+
+set --global _fzf_search_vars_command '_fzf_search_variables (set --show | psub) (set --names | psub)'
+
+
+# Install the default bindings, which are mnemonic and minimally conflict with fish's preset bindings
+fzf_configure_bindings
+
 /home/ms/.local/bin/mise activate fish | source
