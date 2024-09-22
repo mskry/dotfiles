@@ -1,0 +1,25 @@
+[tools]
+glow = "latest"
+fzf = "latest"
+eza = "latest"
+zellij = "latest"
+zoxide = "latest"
+fd = "latest"
+ripgrep = "latest"
+starship = "latest"
+bat = "latest"
+pnpm = "latest"
+yay = "latest"
+usage = "latest"
+python = "latest"
+deno = "latest"
+bun = "latest"
+go = "latest"
+bottom = "latest"
+dust = "latest"
+neovim = "latest"
+node = "latest"
+rust = "latest"
+
+[settings]
+experimental = true

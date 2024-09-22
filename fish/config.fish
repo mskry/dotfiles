@@ -1,7 +1,12 @@
+# >>> mise initialize >>>
+~/.local/bin/mise activate fish | source
+# <<< mise initialize <<<
+
 alias nv "nvim ."
 
 if type -q eza
     alias ls="eza"
+    # rest of the aliases are in fish/functions/l*.fish
 end
 
 if type -q bat
@@ -12,13 +17,6 @@ if type -q fd
     alias find="fd --type f"
 end
 
-if status is-interactive
-    starship init fish | source
-end
-
-if type -q mise
-    /home/ms/.local/bin/mise activate fish | source
-end
 # set default editor for the fzf to open files
 set -gx EDITOR "nvim"
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
@@ -38,4 +36,13 @@ else
     end
 end
 # <<< conda initialize <<<
+~/.local/share/mise/installs/zoxide/latest/bin/zoxide init fish | source
+#abbr --erase cd &>/dev/null
+alias cd=__zoxide_z
 
+# switch keymap on both shifts pressed
+setxkbmap -model pc105 -layout us,ua -variant qwerty -option grp:shifts_toggle
+
+set -gx BROWSER "brave"
+
+~/.local/share/mise/installs/starship/latest/bin/starship init fish | source
