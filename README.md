@@ -71,6 +71,7 @@ fc-cache -vf
 1. Avoid `sudo` for Docker commands:
 
 ```bash
+# add your user to a docker group
 sudo usermod -aG docker $USER
 ```
 
