@@ -1,6 +1,8 @@
 {
   "extras": [
     "lazyvim.plugins.extras.ai.supermaven",
+    "lazyvim.plugins.extras.editor.harpoon2",
+    "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.vue"
   ],
   "install_version": 8,

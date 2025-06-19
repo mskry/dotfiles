@@ -7,3 +7,4 @@ iterm2/
 yarn
 configstore/
 nvim_backup/
+.aider*
