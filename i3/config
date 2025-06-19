@@ -103,7 +103,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -189,10 +189,12 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        font pango: JetBrainsMono Nerd Font Mono 12
+        font pango: JetBrainsMono Nerd Font Mono 11
 }
 
 #  overrides
 
 default_border pixel 1
 default_floating_border pixel 1
+
+exec_always --no-startup-id picom --backend glx -b &
